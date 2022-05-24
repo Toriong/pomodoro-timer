@@ -1,0 +1,54 @@
+:root{
+  --backgroundColor:#282c34
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.pomodoroTimerPage {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+button{
+    padding: 0;
+      cursor: pointer;
+      outline: none;
+      border-style: none;
+      background-color: none;
+      background: none;
+      color: white;
+      display: flex;
+      justify-content: center;
+      place-items: center;
+}
+
+
+
+.pomodoroTimerPage {
+  background-color: var(--backgroundColor);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+

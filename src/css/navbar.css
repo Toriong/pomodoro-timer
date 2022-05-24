@@ -1,0 +1,51 @@
+.navbar {
+    border-bottom: silver solid 0.8px;
+    height: 100px;
+    width: 100%;
+    border-right: none;
+    border-left: left;
+    display: flex;
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
+    position: fixed;
+    z-index: 100002;
+    top: 0;
+}
+
+.unfixed-wrapper {
+    height: 100px;
+    width: 100%;
+    background-color: var(--backgroundColor);
+}
+
+
+.navbarSubContainer {
+    display: flex;
+justify-content: space-between;
+    width: 100%;
+    max-width: 2560px;
+    min-width: 280px;
+}
+
+.navbar h1{
+    font-size: 22px;
+}
+
+.navbar span{
+    font-size: 18px;;
+    margin-left: 8px;
+}
+
+.navbarSubContainer > section{
+    display: grid;
+    place-items: center;
+}
+
+.navbarSubContainer>section:nth-child(2){
+    min-width: 200px;
+}
+
+.navbarSubContainer>section:first-child{
+    min-width: 400px;
+}
+
