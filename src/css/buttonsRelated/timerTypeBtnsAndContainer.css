@@ -1,0 +1,29 @@
+#timerTypeButtonContainer{
+    height: 100px;
+    display: flex;;
+    justify-content: center;
+    place-items: center;
+    padding-top: 48px;
+}
+
+#timerTypeButtonContainer > button:first-child{
+    margin-right: 8px;
+}
+
+#timerTypeButtonContainer>button:nth-child(2){
+    margin-left: 8px;
+}
+
+#timerTypeButtonContainer > button{
+    width: 300px;
+    height: 50px;
+    display: grid;
+    font-size: 18px;
+    background-color: #616771;
+    border-radius: .5em;
+    place-items: center;
+    color: lightskyblue;
+    border: solid silver .4px;
+    font-weight: 300;
+
+}

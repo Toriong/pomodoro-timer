@@ -1,5 +1,6 @@
 :root{
-  --backgroundColor:#282c34
+  --backgroundColor:#282c34;
+  --borderColor: silver solid 0.8px
 }
 
 body {

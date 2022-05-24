@@ -1,5 +1,5 @@
 .navbar {
-    border-bottom: silver solid 0.8px;
+    border-bottom: var(--borderColor);
     height: 100px;
     width: 100%;
     border-right: none;
