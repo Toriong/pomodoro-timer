@@ -5,11 +5,15 @@
     border-right: none;
     border-left: left;
     display: flex;
+    flex-direction: column;
     background-color: var(--backgroundColor);
     color: var(--textColor);
     position: fixed;
     z-index: 100002;
     top: 0;
+}
+
+.pomodoroTimerSettingContainer{
 }
 
 .unfixed-wrapper {
@@ -25,6 +29,7 @@ justify-content: space-between;
     width: 100%;
     max-width: 2560px;
     min-width: 280px;
+    height: 97px;
 }
 
 .navbar h1{

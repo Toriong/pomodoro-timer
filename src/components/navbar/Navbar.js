@@ -17,6 +17,9 @@ const Navbar = () => {
                         </button>
                     </section>
                 </div>
+                <div className='pomodoroTimerSettingContainer'>
+
+                </div>
             </div>
         </div >
     )
