@@ -10,11 +10,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--backgroundColor);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+input {
+  all: unset;
+  outline: none;
+  border-bottom: var(--borderColor);
 }
 
 .pomodoroTimerPage {

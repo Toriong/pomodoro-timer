@@ -16,6 +16,8 @@
 .pomodoroTimerSettingContainer{
 }
 
+
+
 .unfixed-wrapper {
     height: 100px;
     width: 100%;
@@ -54,3 +56,24 @@ justify-content: space-between;
     min-width: 400px;
 }
 
+@media (max-width: 767px){
+    .navbarSubContainer > section:first-child{
+        min-width: 125px;
+        width: 20vw;
+        padding-left: 7px;
+    }
+
+    .navbarSubContainer > section:first-child h1{
+font-size: 15px;;
+    }
+
+        .navbarSubContainer>section:nth-child(2){
+            min-width: 100px;
+        }
+}
+
+@media (max-width: 280px) {
+ .navbar{
+     overflow-x: auto;
+ }   
+}

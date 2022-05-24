@@ -1,0 +1,116 @@
+.settingsMenu{
+    width: 100%;
+        height: 60vh;
+        max-height: 220px;
+        position: fixed;
+        border-top: solid white .5px;
+        ;
+        border-bottom: solid white .5px;
+        background-color: var(--backgroundColor);
+        overflow-x: auto;
+}
+
+.settingsMenu > header{
+    display: flex;
+    justify-content: left;;
+    padding-left: 20px;
+    min-width: 260px;
+}
+
+.inputSection > form{
+    display: flex;;
+    flex-direction: column;
+}
+
+.inputSection>form > div:last-child button{
+    margin-top: 40px;
+    margin: 40px 0px 0px 10px;
+    border-radius: 4px;;
+    height: 25px;
+    background-color: green;;
+    width: 100px;
+}
+
+.inputSection {
+    padding: 0px 32px 0px 32px;
+}
+
+.inputSection label {
+    font-size: 19px;
+    ;
+}
+
+.inputSection input {
+    margin-left: 8px;
+    font-size: 19px;
+    width: 100px;
+}
+
+.inputSection> form div {
+    display: flex;
+    ;
+}
+
+.inputSection> form div:not(:first-of-type) {
+    margin-left: 64px;
+}
+
+#alarmInputContainer {
+    transform: translateY(1px);
+}
+
+
+#alarmInputContainer svg {
+    font-size: 20px;
+}
+
+
+@media(max-width: 767px){
+    .settingsMenu > header{
+        place-items: center;
+        justify-content: center;
+    }
+
+    .settingsMenu{
+        height: fit-content;
+        max-height: none;
+        padding-bottom: 10px;;
+    }
+
+    .inputSection > form > div{
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        }
+
+    .inputSection>form div:not(:first-of-type){
+        margin-left: 0px;
+    }
+
+
+.inputSection label{
+            text-align: center;
+            font-size: clamp(12px, 4vw, 19px);
+            /* position: absolute; */
+    }
+
+    .inputSection>form{
+        min-width: 216px;
+    }
+
+        .inputSection>form div div{
+            /* width: 300px; */
+            min-width: 250px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #alarmInputContainer > button{
+            width: 100px;
+        }
+
+    .inputSection > form > div div:not(:first-of-type){
+        margin-top: 8px;
+
+    }
+}

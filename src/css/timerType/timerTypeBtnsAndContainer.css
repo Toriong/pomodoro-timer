@@ -27,3 +27,12 @@
     font-weight: 300;
 
 }
+
+
+@media(max-width: 767px){
+#timerTypeButtonContainer>button {
+    width: 20vw;
+    min-width: 87px;
+}
+}
+

@@ -1,16 +1,18 @@
 import React from 'react'
 import { useState } from 'react';
-import '../css/buttonsRelated/timerTypeBtnsAndContainer.css'
+import '../css/timerType/timerTypeBtnsAndContainer.css'
 
-const TimerTypeButtons = () => {
+const TimerTypeButtons = ({ setIsFocusTimerOn }) => {
 
     const [isFocusBtnClicked, setIsFocusBtnClicked] = useState(true);
 
     const handleFocusBtnClick = () => {
+        setIsFocusTimerOn(true);
         setIsFocusBtnClicked(true);
     };
 
     const handleBreakBtnClick = () => {
+        setIsFocusTimerOn(false);
         setIsFocusBtnClicked(false);
     }
 
