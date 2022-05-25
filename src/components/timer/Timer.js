@@ -14,6 +14,8 @@ const Timer = ({ isFocusTimerOn }) => {
         return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
     }
 
+    // GOAL: when the user starts the timer, subtract 1000 miliSeconds to the current timer that the user is on  
+
     const timer = isFocusTimerOn ? convertMillisToMinutesAndSeconds(focusTime) : convertMillisToMinutesAndSeconds(breakTime)
 
 
@@ -25,11 +27,9 @@ const Timer = ({ isFocusTimerOn }) => {
     // GOAL: 
     // present the timer onto the UI 
     return (
-        <div>
-            <section>
-                <span>{timer}</span>
-            </section>
-        </div>
+        <section>
+            <span>{timer}</span>
+        </section>
     )
 }
 

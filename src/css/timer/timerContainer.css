@@ -1,6 +1,15 @@
 .timerContainer{
     height: 500px;
-    border: solid pink;
+}
+
+.timerContainer > section{
+    height: 40%;
+    display: grid;
+    place-items: center;
+}
+
+.timerContainer>section > span{
+    font-size: 70px;;
 }
 
 
