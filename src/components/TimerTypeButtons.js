@@ -1,37 +1,34 @@
-import React from 'react'
-import { useState } from 'react';
-import '../css/timerType/timerTypeBtnsAndContainer.css'
+import React from "react";
+import { useState } from "react";
+import "../css/timerType/timerTypeBtnsAndContainer.css";
 
-const TimerTypeButtons = ({ setIsFocusTimerOn }) => {
+const TimerTypeButtons = ({ _isFocusTimerOn }) => {
+  const [isFocusTimerOn, setIsFocusTimerOn] = _isFocusTimerOn;
 
-    const [isFocusBtnClicked, setIsFocusBtnClicked] = useState(true);
+  const handleFocusBtnClick = () => {
+    setIsFocusTimerOn(true);
+  };
 
-    const handleFocusBtnClick = () => {
-        setIsFocusTimerOn(true);
-        setIsFocusBtnClicked(true);
-    };
+  const handleBreakBtnClick = () => {
+    setIsFocusTimerOn(false);
+  };
 
-    const handleBreakBtnClick = () => {
-        setIsFocusTimerOn(false);
-        setIsFocusBtnClicked(false);
-    }
+  return (
+    <div id="timerTypeButtonContainer">
+      <button
+        onClick={handleFocusBtnClick}
+        style={{ backgroundColor: !isFocusTimerOn && "var(--backgroundColor)" }}
+      >
+        FOCUS!
+      </button>
+      <button
+        onClick={handleBreakBtnClick}
+        style={{ backgroundColor: isFocusTimerOn && "var(--backgroundColor)" }}
+      >
+        Break
+      </button>
+    </div>
+  );
+};
 
-    return (
-        <div id="timerTypeButtonContainer">
-            <button
-                onClick={handleFocusBtnClick}
-                style={{ backgroundColor: !isFocusBtnClicked && 'var(--backgroundColor)' }}
-            >
-                FOCUS!
-            </button>
-            <button
-                onClick={handleBreakBtnClick}
-                style={{ backgroundColor: isFocusBtnClicked && 'var(--backgroundColor)' }}
-            >
-                Break
-            </button>
-        </div>
-    )
-}
-
-export default TimerTypeButtons
+export default TimerTypeButtons;
