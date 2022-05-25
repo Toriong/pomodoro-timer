@@ -52,68 +52,26 @@ const TimerContainer = ({ _isFocusTimerOn }) => {
   const handleStartBtnClick = () => {
     setDidTimerStart(true);
   };
-  // this comp will hold the following:
-  // the timer
-  // the buttons that will start the timer and stop the timer
 
-  // GOAL: start the timer when the user presses the start button
-
-  // BRAIN DUMP NOTES:
-  // when the presses the start button, for every second, subtract 1000 miliseconds to the val that is stored in focusTime
-  // when it reaches zero, alert the user that timer is done and ring the alarm bell
-
-  // GOAL: for every second, subtract 10000 to the current timer that the user is on
-
-  // CASE: the user is on the focus timer
-  // alert the user that the timer is done
-  // if the val is zero, didTimerStart to false
-  // if the val is zero, then store the original value into focusTime or setBreakTime
-  // if the val is not zero, then pass num into setFocusTime or setBreakTime, this will show the changes onto the UI
-  // check if answer is zero or not
-  // store the difference into setCurrentTime
-  // minus 1000 (one second)
-  // for every second do the following above:
-  // execute setInterval for every a second
-  // make a copy of the target timer
-  // get the target timer (either focusTime or breakTime)
-  // within the consequent of didTimerStart do the following above:
-  // execute the setInterval within the useEffect
-  // set didTimerStart to true
-  // the user presses the start button
-
-  // BRAIN DUMP NOTES:
-  // CASE 1: the user presses the reset button, change the time to the original num for the target timer
-
-  // CASE 2: the user presses the pause button, get the current time that the user is on and display onto the DOM
-  // BRAIN DUMP NOTES:
-  // for the starting time, insert it into a single state. This state (call it countDownTime) will be the state that will be displayed onto the DOM
-
-  // STEPS:
-  // GOAL: the current time that the user is on is still being displayed onto the DOM
-  //
+  const handlePauseBtnClick = (interval) => {
+    //Goal: pause the countdown of the timer when the user presses the pause button
+    // the current time is displayed onto the screen
+    // if the isTimerPause is true, then show the currentTime on the Timer comp
+    // isTimerPaused is set to true
+    // the user presses the pause button
+    console.log("what is your name?");
+    setIsTimerPaused(true);
+    setDidTimerStart(false);
+    clearInterval(interval);
+  };
 
   useEffect(() => {
     if (didTimerStart) {
       let time = isFocusTimerOn
         ? JSON.parse(JSON.stringify(focusTime))
         : JSON.parse(JSON.stringify(breakTime));
-      const interval = setInterval(() => {
+      var interval = setInterval(() => {
         time = time - 1000;
-        // GOAL: when the timer is at zero, then tell the user the following: 'Focus time is up. Good job, take a break!'
-        // if time is zero, then stop the timer and if the user is on the focus mode, then tell the user the above
-        // the zero time is shown onto the dom
-        // the time is at zero
-        // if the time is at zero, then alert the user
-
-        // setCurrentTime(time);
-        // if (time === 0) {
-        //     setCountDownTime(_countDownTime);
-        //     setDidTimerStart(false);
-        //     alert("Time is up. Good job!");
-        //     clearInterval(interval);
-        // } else {
-        //     setCountDownTime(time);
-        // }
 
         setCurrentTime(time);
         setCountDownTime(time);
@@ -129,12 +87,27 @@ const TimerContainer = ({ _isFocusTimerOn }) => {
           setDidTimerStart(false);
         }
       }, 1000);
+      //   document.addEventListener("click", (event) => {
+      //     console.log("currentTime: ", currentTime);
+      //     console.log("is time not below 0: ", currentTime !== -1000);
+      //     const wasPauseBtnPressed = event.target.id === "pauseAndResumeBtn";
+      //     const isTimeBelowZero = currentTime !== -1000;
+      //     if (wasPauseBtnPressed && isTimeBelowZero) {
+      //       console.log("hello world");
+      //       handlePauseBtnClick(interval);
+      //     }
+      //   });
+    } else {
     }
   }, [didTimerStart]);
 
   return (
     <div className="timerContainer">
-      <Timer countDownTime={countDownTime} />
+      <Timer
+        countDownTime={countDownTime}
+        currentTimerTime={currentTime}
+        isTimerPaused={isTimerPaused}
+      />
       <section>
         {!didTimerStart ? (
           <button onClick={handleStartBtnClick}>Start</button>
