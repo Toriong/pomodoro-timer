@@ -20,62 +20,71 @@ const TimerContainer = ({ _isFocusTimerOn }) => {
   const [didTimerStart, setDidTimerStart] = useState(false);
   const [isTimerPaused, setIsTimerPaused] = useState(false);
   const [isFocusTimerOn, setIsFocusTimerOn] = _isFocusTimerOn;
-  const _countDownTime = isFocusTimerOn ? focusTime : breakTime;
+  const __focusTime = localStorage.getItem("focusTime")
+    ? JSON.parse(localStorage.getItem("focusTime"))
+    : focusTime;
+  const __breakTime = localStorage.getItem("breakTime")
+    ? JSON.parse(localStorage.getItem("breakTime"))
+    : _breakTime;
+  const _countDownTime = isFocusTimerOn ? __focusTime : __breakTime;
   const [countDownTime, setCountDownTime] = useState(_countDownTime);
   const [currentTime, setCurrentTime] = useState(_countDownTime);
   const [didFirstRenderOccur, setDidFirstRenderOccur] = useState(false);
+  const [willResumePausedCount, setWillResumePausedCount] = useState(false);
+  const [intervalTimer, setIntervalTimer] = useState(null);
+
+  //  BUG: when the
 
   useEffect(() => {
-    const _focusTime = localStorage.getItem("focusTime");
-    if (_focusTime && isFocusTimerOn) {
-      var __focusTime = JSON.parse(localStorage.getItem("focusTime"));
-      console.log("__focusTime: ", __focusTime);
-    }
-    __focusTime && setCountDownTime(__focusTime);
-  }, []);
-
-  useEffect(() => {
-    console.log("hello there meng");
     if (!didFirstRenderOccur) {
       setDidFirstRenderOccur(true);
     } else {
-      console.log("do not execute me");
-      const _countDownTime = isFocusTimerOn ? focusTime : breakTime;
+      const __focusTime = localStorage.getItem("focusTime")
+        ? JSON.parse(localStorage.getItem("focusTime"))
+        : focusTime;
+      const __breakTime = localStorage.getItem("breakTime")
+        ? JSON.parse(localStorage.getItem("breakTime"))
+        : breakTime;
+      const _countDownTime = isFocusTimerOn ? __focusTime : __breakTime;
+      console.log("_countDownTime: ", _countDownTime);
       setCountDownTime(_countDownTime);
     }
-  }, [focusTime, breakTime, isFocusTimerOn]);
+  }, [isFocusTimerOn, breakTime, focusTime]);
 
-  useEffect(() => {
-    console.log("countDownTime: ", countDownTime);
-  });
+  // useEffect(() => {
+  //   console.log("hello there meng");
+  //   if (!didFirstRenderOccur) {
+  //     setDidFirstRenderOccur(true);
+  //   } else {
+  //     console.log("do not execute me");
+  //     const _countDownTime = isFocusTimerOn ? focusTime : breakTime;
+  //     setCountDownTime(_countDownTime);
+  //   }
+  // }, [focusTime, breakTime, isFocusTimerOn]);
 
   const handleStartBtnClick = () => {
     setDidTimerStart(true);
   };
 
-  const handlePauseBtnClick = (interval) => {
-    //Goal: pause the countdown of the timer when the user presses the pause button
-    // the current time is displayed onto the screen
-    // if the isTimerPause is true, then show the currentTime on the Timer comp
-    // isTimerPaused is set to true
-    // the user presses the pause button
-    console.log("what is your name?");
+  const handlePauseBtnClick = () => {
+    clearInterval(intervalTimer);
     setIsTimerPaused(true);
-    setDidTimerStart(false);
-    clearInterval(interval);
   };
+
+  const [resumeCountToggled, setResumeCountToggled] = useState(false);
 
   useEffect(() => {
     if (didTimerStart) {
-      let time = isFocusTimerOn
-        ? JSON.parse(JSON.stringify(focusTime))
-        : JSON.parse(JSON.stringify(breakTime));
-      var interval = setInterval(() => {
+      console.log("willResumePausedCount: ", willResumePausedCount);
+      console.log("currentTime: ", currentTime);
+      let time = willResumePausedCount
+        ? JSON.parse(JSON.stringify(currentTime))
+        : JSON.parse(JSON.stringify(_countDownTime));
+      let interval = setInterval(() => {
         time = time - 1000;
-
         setCurrentTime(time);
         setCountDownTime(time);
-        if (time === -1000) {
+        if (time === -1000 || time < 0) {
           const message = isFocusTimerOn
             ? "Focus time is up. Good job, take a break!"
             : "Break time is up. Let's get back to work!";
@@ -85,21 +94,29 @@ const TimerContainer = ({ _isFocusTimerOn }) => {
           clearInterval(interval);
           setIsFocusTimerOn((isFocusTimerOn) => !isFocusTimerOn);
           setDidTimerStart(false);
+          willResumePausedCount && setWillResumePausedCount(false);
         }
       }, 1000);
-      //   document.addEventListener("click", (event) => {
-      //     console.log("currentTime: ", currentTime);
-      //     console.log("is time not below 0: ", currentTime !== -1000);
-      //     const wasPauseBtnPressed = event.target.id === "pauseAndResumeBtn";
-      //     const isTimeBelowZero = currentTime !== -1000;
-      //     if (wasPauseBtnPressed && isTimeBelowZero) {
-      //       console.log("hello world");
-      //       handlePauseBtnClick(interval);
-      //     }
-      //   });
-    } else {
+      setIntervalTimer(interval);
     }
-  }, [didTimerStart]);
+  }, [didTimerStart, resumeCountToggled]);
+
+  const handleResumeBtnClick = () => {
+    setResumeCountToggled((resumeCountToggled) => !resumeCountToggled);
+    setIsTimerPaused(false);
+    setWillResumePausedCount(true);
+  };
+
+  const handleResetBtnClick = () => {
+    // GOAL: when the user presses the reset button, do the following on the UI:
+    // store the default value for the targeted timer (pass the default value for setFocusTimer if on focus timer, if user on break timer, then pass the default timer for the setBreakTimer)
+    // store false into didTimerStart
+    // stop the timer from executing
+    // the user presses the reset button
+    clearInterval(intervalTimer);
+    setDidTimerStart(false);
+    setCountDownTime(_countDownTime);
+  };
 
   return (
     <div className="timerContainer">
@@ -113,10 +130,17 @@ const TimerContainer = ({ _isFocusTimerOn }) => {
           <button onClick={handleStartBtnClick}>Start</button>
         ) : (
           <>
-            <button id="pauseAndResumeBtn">
+            <button
+              id="pauseAndResumeBtn"
+              onClick={() => {
+                isTimerPaused ? handleResumeBtnClick() : handlePauseBtnClick();
+              }}
+            >
               {isTimerPaused ? "Resume" : "Pause"}
             </button>
-            <button id="resetBtn">Reset</button>
+            <button id="resetBtn" onClick={handleResetBtnClick}>
+              Reset
+            </button>
           </>
         )}
       </section>
