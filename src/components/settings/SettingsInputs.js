@@ -62,7 +62,6 @@ const SettingsInputs = ({ setIsSettingsOn }) => {
 
 
     useLayoutEffect(() => {
-        // GOAL: check if there are input saved into the local storage. if there is then update respective states (focus time, break time, isAlarmOn)
         const _breakTime = localStorage.getItem('breakTime');
         const _focusTime = localStorage.getItem('focusTime');
         const _isAlarmOn = localStorage.getItem('isAlarmOn');

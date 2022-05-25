@@ -2,7 +2,7 @@ import React from 'react'
 import { useContext } from 'react'
 import { SettingsContext } from '../../providers/SettingsProvider'
 
-const Timer = ({ isFocusTimerOn }) => {
+const Timer = ({ countDownTime }) => {
     const { _focusTime, _breakTime } = useContext(SettingsContext)
     const [focusTime, setFocusTime] = _focusTime;
     const [breakTime, setBreakTime] = _breakTime;
@@ -16,7 +16,6 @@ const Timer = ({ isFocusTimerOn }) => {
 
     // GOAL: when the user starts the timer, subtract 1000 miliSeconds to the current timer that the user is on  
 
-    const timer = isFocusTimerOn ? convertMillisToMinutesAndSeconds(focusTime) : convertMillisToMinutesAndSeconds(breakTime)
 
 
 
@@ -28,7 +27,7 @@ const Timer = ({ isFocusTimerOn }) => {
     // present the timer onto the UI 
     return (
         <section>
-            <span>{timer}</span>
+            <span>{convertMillisToMinutesAndSeconds(countDownTime)}</span>
         </section>
     )
 }

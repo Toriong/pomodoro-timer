@@ -8,8 +8,39 @@
     place-items: center;
 }
 
+.timerContainer > section:last-child button{
+    background: green;
+    width: 20vw;
+    height: 40px;
+    font-size: 20px;;
+    border-radius: 8px;;
+}
+
+.timerContainer > section:last-child{
+    display: flex;
+justify-content: center;
+align-items: center;
+}
+
 .timerContainer>section > span{
     font-size: 70px;;
+}
+
+#pauseAndResumeBtn{
+    background-color: red;
+}
+
+#pauseAndResumeBtn{
+    margin-right: 8px;
+}
+
+#resetBtn{
+    margin-left: 8px;
+}
+
+#resetBtn{
+    background-color: inherit;
+    border: var(--borderColor)
 }
 
 
