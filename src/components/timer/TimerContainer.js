@@ -47,6 +47,11 @@ const TimerContainer = ({ _isFocusTimerOn }) => {
         : breakTime;
       const _countDownTime = isFocusTimerOn ? __focusTime : __breakTime;
       console.log("_countDownTime: ", _countDownTime);
+      if (didTimerStart) {
+        clearInterval(intervalTimer);
+        setDidTimerStart(false);
+        isTimerPaused && setIsTimerPaused(false);
+      };
       setCountDownTime(_countDownTime);
     }
   }, [isFocusTimerOn, breakTime, focusTime]);
@@ -116,6 +121,7 @@ const TimerContainer = ({ _isFocusTimerOn }) => {
     clearInterval(intervalTimer);
     setDidTimerStart(false);
     setCountDownTime(_countDownTime);
+    isTimerPaused && setIsTimerPaused(false);
   };
 
   return (

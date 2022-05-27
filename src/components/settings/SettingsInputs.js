@@ -86,7 +86,7 @@ const SettingsInputs = ({ setIsSettingsOn }) => {
 
   return (
     <>
-      <div>
+      <div className="settingsOptionsContainer">
         <div>
           <label htmlFor="pomodoro">Pomodoro {"(Focus)"}</label>
           <input
