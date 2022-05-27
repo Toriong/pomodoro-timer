@@ -44,9 +44,19 @@ const SettingsInputs = ({ setIsSettingsOn }) => {
     event.preventDefault();
     const isBreakTimeOver4hrs = breakTimeMinsNew > 240;
     const isFocusTimeOver4hrs = focusTimeMinsNew > 240;
+    const isBreakTimeOver0 = breakTimeMinsNew > 0;
+    const isFocusTimeOver0 = focusTimeMinsNew > 0;
     console.log('focusTimeMinsNew: ', focusTimeMinsNew);
     if (isFocusTimeOver4hrs || isBreakTimeOver4hrs) {
       alert("Timer cannot be over 4hrs.")
+      return;
+    };
+    if (!isBreakTimeOver0) {
+      alert('Break time cannot be zero.');
+      return;
+    };
+    if (!isFocusTimeOver0) {
+      alert('Focus time cannot be zero.')
       return;
     }
     if (breakTimeMinsNew !== breakTimeMinutes) {
