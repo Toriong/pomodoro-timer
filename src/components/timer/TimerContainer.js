@@ -63,6 +63,7 @@ const TimerContainer = ({ _isFocusTimerOn, _didTimerStart }) => {
       };
       setIsAlarmOn(isAlarmOn);
       setCountDownTime(_countDownTime);
+      setCurrentTime(_countDownTime);
     }
   }, [isFocusTimerOn, breakTime, focusTime, isAlarmOn]);
 
