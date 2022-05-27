@@ -5,8 +5,9 @@ import { AiFillCloseSquare } from "react-icons/ai";
 import '../../css/navbar.css'
 import Settings from '../settings/Settings';
 
-const Navbar = () => {
+const Navbar = ({ _didTimerStart }) => {
     const [isSettingsOn, setIsSettingsOn] = useState(false);
+    const [didTimerStart, setDidTimerStart] = _didTimerStart;
 
     const handleSettingsBtnClick = () => { setIsSettingsOn(!isSettingsOn); };
 
@@ -25,7 +26,7 @@ const Navbar = () => {
                     </section>
                 </div>
                 <div className='pomodoroTimerSettingContainer'>
-                    {isSettingsOn && <Settings setIsSettingsOn={setIsSettingsOn} />}
+                    {isSettingsOn && <Settings setIsSettingsOn={setIsSettingsOn} didTimerStart={didTimerStart} />}
                 </div>
             </div>
         </div>

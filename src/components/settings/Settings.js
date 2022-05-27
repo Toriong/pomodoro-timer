@@ -5,7 +5,7 @@ import '../../css/settings/settings.css'
 import { SettingsContext } from '../../providers/SettingsProvider';
 import SettingsInputs from './SettingsInputs';
 
-const Settings = ({ setIsSettingsOn }) => {
+const Settings = ({ setIsSettingsOn, didTimerStart }) => {
 
 
     return (
@@ -16,9 +16,15 @@ const Settings = ({ setIsSettingsOn }) => {
                 <h3>Settings</h3>
             </header>
             <section className='inputSection'>
-                <form>
-                    <SettingsInputs setIsSettingsOn={setIsSettingsOn} />
-                </form>
+                {didTimerStart ?
+                    <span>Timer is running. Stop timer to edit settings.</span>
+
+                    :
+                    <form>
+                        <SettingsInputs setIsSettingsOn={setIsSettingsOn} />
+                    </form>
+                }
+
             </section>
         </div>
     )

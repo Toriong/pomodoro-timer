@@ -55,6 +55,7 @@ button{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  max-width: 2560px;
   /* align-items: center; */
   /* justify-content: center; */
   font-size: calc(10px + 2vmin);

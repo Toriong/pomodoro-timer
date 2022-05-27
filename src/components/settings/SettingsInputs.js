@@ -23,6 +23,12 @@ const SettingsInputs = ({ setIsSettingsOn }) => {
     setFocusTimeMinsNew(event.target.value);
   };
 
+  const handleKeyDown = event => {
+    console.log('event: ', event.keyCode);
+    const keyCodes = [190, 189];
+    keyCodes.includes(event.keyCode) && event.preventDefault();
+  }
+
   const handleBreakTimeOnChange = (event) => {
     setBreakTimeMinsNew(event.target.value);
   };
@@ -36,6 +42,13 @@ const SettingsInputs = ({ setIsSettingsOn }) => {
 
   const handleSaveBtnClick = (event) => {
     event.preventDefault();
+    const isBreakTimeOver4hrs = breakTimeMinsNew > 240;
+    const isFocusTimeOver4hrs = focusTimeMinsNew > 240;
+    console.log('focusTimeMinsNew: ', focusTimeMinsNew);
+    if (isFocusTimeOver4hrs || isBreakTimeOver4hrs) {
+      alert("Timer cannot be over 4hrs.")
+      return;
+    }
     if (breakTimeMinsNew !== breakTimeMinutes) {
       setBreakTimeConfirmed(convertMinutesToMiliSeconds(breakTimeMinsNew));
     }
@@ -96,6 +109,7 @@ const SettingsInputs = ({ setIsSettingsOn }) => {
             onChange={(event) => {
               handleFocusTimeOnChange(event);
             }}
+            onKeyDown={event => { handleKeyDown(event) }}
           />
         </div>
         <div>
@@ -107,6 +121,7 @@ const SettingsInputs = ({ setIsSettingsOn }) => {
             onChange={(event) => {
               handleBreakTimeOnChange(event);
             }}
+            onKeyDown={event => { handleKeyDown(event) }}
           />
         </div>
         <div id="alarmInputContainer">

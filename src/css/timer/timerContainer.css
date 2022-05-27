@@ -11,6 +11,7 @@
 .timerContainer > section:last-child button{
     background: green;
     width: 20vw;
+    max-width: 240px;
     height: 40px;
     font-size: 20px;;
     border-radius: 8px;;

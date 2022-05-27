@@ -1,13 +1,13 @@
 .settingsMenu{
     width: 100%;
         height: 60vh;
-        max-height: 220px;
+        max-height: 520px;
         position: fixed;
         border-top: solid white .5px;
         ;
         border-bottom: solid white .5px;
         background-color: var(--backgroundColor);
-        overflow-x: auto;
+        overflow-x: auto
 }
 
 .settingsMenu > header{
@@ -15,6 +15,7 @@
     justify-content: left;;
     padding-left: 20px;
     min-width: 260px;
+    height: 116.854px;
 }
 
 .inputSection > form{
@@ -29,6 +30,11 @@
     height: 25px;
     background-color: green;;
     width: 100px;
+}
+
+.settingsMenu > header,
+.inputSection{
+    max-width: 2496px;
 }
 
 .inputSection {
